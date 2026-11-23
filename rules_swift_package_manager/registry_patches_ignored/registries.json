@@ -1,0 +1,12 @@
+{
+  "authentication" : {
+
+  },
+  "registries" : {
+    "[default]" : {
+      "supportsAvailability" : false,
+      "url" : "https://fake-swift-package-registry.luispadron.deno.net/"
+    }
+  },
+  "version" : 1
+}
