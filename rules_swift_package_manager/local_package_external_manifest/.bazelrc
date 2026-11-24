@@ -1,0 +1,4 @@
+common --enable_bzlmod
+build --incompatible_strict_action_env
+build --macos_minimum_os=13.0
+build --host_macos_minimum_os=13.0
