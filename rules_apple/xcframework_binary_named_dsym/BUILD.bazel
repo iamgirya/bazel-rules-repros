@@ -1,0 +1,24 @@
+load("@rules_apple//apple:apple.bzl", "apple_dynamic_xcframework_import")
+load("@rules_apple//apple:ios.bzl", "ios_application")
+load("@rules_cc//cc:objc_library.bzl", "objc_library")
+
+# Created by make_xcframework.sh; its dSYM is dSYMs/Greeting.dSYM.
+apple_dynamic_xcframework_import(
+    name = "greeting",
+    xcframework_imports = glob(["Greeting.xcframework/**"]),
+)
+
+objc_library(
+    name = "main",
+    srcs = ["main.m"],
+    deps = [":greeting"],
+)
+
+ios_application(
+    name = "app",
+    bundle_id = "com.example.app",
+    families = ["iphone"],
+    infoplists = ["Info.plist"],
+    minimum_os_version = "15.0",
+    deps = [":main"],
+)
