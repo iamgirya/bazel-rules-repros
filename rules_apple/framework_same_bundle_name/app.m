@@ -1,0 +1,1 @@
+int app_value(void) { return 42; }

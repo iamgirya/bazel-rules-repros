@@ -1,0 +1,18 @@
+load("@rules_apple//apple:ios.bzl", "ios_framework")
+load("@rules_cc//cc:objc_library.bzl", "objc_library")
+
+[objc_library(
+    name = "lib_" + flavor,
+    srcs = ["app.m"],
+) for flavor in ["free", "paid"]]
+
+# The same framework built for two flavors: both are App.framework.
+[ios_framework(
+    name = "app_framework_" + flavor,
+    bundle_id = "com.example.app." + flavor,
+    bundle_name = "App",
+    families = ["iphone"],
+    infoplists = ["Info.plist"],
+    minimum_os_version = "15.0",
+    deps = [":lib_" + flavor],
+) for flavor in ["free", "paid"]]
